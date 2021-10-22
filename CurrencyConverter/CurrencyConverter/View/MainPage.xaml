@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:CurrencyConverter.ViewModel;assembly=CurrencyConverter"
+             x:Class="CurrencyConverter.View.MainPage"
+             x:DataType="viewModel:MainPageViewModel">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <DatePicker Format="День: dd, месяц: MM, год: yyyy" DateSelected="OnDateSelected">
+                <DatePicker.MinimumDate>6/01/2016</DatePicker.MinimumDate>
+            </DatePicker>
+        </Frame>
+        <Label Text="{Binding SelectedDate}" FontSize="Title" Padding="30,10,30,10" />
+
+        <Picker ItemsSource="{Binding Currencies}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedCurrencyLeft}" />
+
+        <Label Text="{Binding SelectedCurrencyLeft.Name}" />
+        <Entry Placeholder="Введите количество валюты" Keyboard="Numeric" Text="{Binding InputValue}" TextChanged="OnTextChanged"></Entry>
+
+        <Picker ItemsSource="{Binding Currencies}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedCurrencyRight}" />
+
+        <Label Text="{Binding SelectedCurrencyRight.Name}" />
+
+        <Entry Keyboard="Numeric" Text="{Binding ResultValue}" TextChanged="OnTextChanged"></Entry>
+        <Label Text="{Binding ResultValue}" FontSize="Title" Padding="30,10,30,10" />
+    </StackLayout>
+
+</ContentPage>
